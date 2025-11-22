@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحاضرة الخامسة - تطور الحاسوب | Computer Evolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h2 {
+            font-size: 1.8em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lecture-info {
+            background: linear-gradient(to right, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .content {
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            padding: 40px;
+            border-radius: 15px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .generation-box {
+            background: white;
+            border-left: 6px solid #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .generation-title {
+            font-size: 1.8em;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .generation-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+        
+        .info-card {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .info-card h4 {
+            color: #1565c0;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .advantages-box {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .advantages-title {
+            color: #2e7d32;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+            z-index: 2;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px;
+            text-align: right;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: right;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .diagram-box {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            border: 2px dashed #9e9e9e;
+        }
+        
+        .diagram-title {
+            font-size: 1.4em;
+            color: #424242;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #263238;
+            color: #aed581;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .important-note {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 6px solid #ff9800;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.2);
+        }
+        
+        .important-title {
+            font-weight: bold;
+            color: #e65100;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .key-points {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .key-points-title {
+            color: #6a1b9a;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+        
+        li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #667eea;
+        }
+        
+        .comparison-card h4 {
+            color: #1e3c72;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .evolution-stats {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 2px solid #2196f3;
+        }
+        
+        .stats-title {
+            color: #0d47a1;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #263238;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .tech-spec {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ المحاضرة الخامسة</h1>
+            <h2>Lecture 5: Computer Evolution & Generations</h2>
+            <p>تطور الحاسوب عبر الأجيال - من الترانزستور إلى المعالجات الدقيقة</p>
+        </div>
+        
+        <div class="lecture-info">
+            <strong>Dr. Radwa Rady</strong> | Computer Architecture | Chapter 2: Continue Computer Evolution
+        </div>
+        
+        <div class="content">
+            <!-- Review Section -->
+            <div class="section">
+                <div class="section-title">
+                    📚 مراجعة المحاضرة الثالثة
+                    <br>Review of Lecture 3
+                </div>
+                
+                <div class="info-card">
+                    <h4>ما تمت مراجعته:</h4>
+                    <ol>
+                        <li><strong>ENIAC:</strong> أول حاسوب إلكتروني رقمي عام للأغراض</li>
+                        <li><strong>IAS Machine:</strong> حاسوب جون فون نيومان ومفهوم البرنامج المخزن</li>
+                        <li><strong>Registers:</strong> السجلات الستة وآلية عملها</li>
+                    </ol>
+                </div>
+                
+                <div class="important-note">
+                    <div class="important-title">💡 الترابط مع المحاضرة الحالية</div>
+                    <p>المحاضرة الثالثة غطت <strong>الجيل الأول</strong> (الأنابيب المفرغة)، واليوم سندرس الأجيال من الثاني حتى السادس!</p>
+                </div>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="section">
+                <div class="section-title">
+                    📋 محتويات المحاضرة
+                    <br>Table of Contents
+                </div>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>1️⃣ الجيل الثاني</h4>
+                        <p>Second Generation: Transistors</p>
+                        <p>الترانزستور والتطور التكنولوجي</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>2️⃣ الجيل الثالث</h4>
+                        <p>Third Generation: Integrated Circuits</p>
+                        <p>الدوائر المتكاملة وثورة التصغير</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>3️⃣ قانون مور</h4>
+                        <p>Moore's Law</p>
+                        <p>التنبؤ الأعظم في تاريخ التكنولوجيا</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>4️⃣ IBM System/360</h4>
+                        <p>عائلة المعالجات الأولى</p>
+                        <p>ثورة في تصميم الحواسيب</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>5️⃣ الذاكرة نصف الموصلة</h4>
+                        <p>Semiconductor Memory</p>
+                        <p>من Core Memory إلى DRAM</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h4>6️⃣ المعالجات الدقيقة</h4>
+                        <p>Microprocessors</p>
+                        <p>من Intel 4004 إلى Core i7</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Generation -->
+            <div class="section">
+                <div class="section-title">
+                    ⚡ الجيل الثاني: الترانزستور
+                    <br>Second Generation: Transistors (1957-1964)
+                </div>
+                
+                <div class="generation-box">
+                    <div class="generation-title">
+                        <div class="generation-icon">🔌</div>
+                        اختراع الترانزستور
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>📅 التاريخ والتطور:</h4>
+                        <ul>
+                            <li><strong>1947:</strong> اختراع الترانزستور في مختبرات Bell Labs</li>
+                            <li><strong>المخترعون:</strong> William Shockley, John Bardeen, Walter Brattain</li>
+                            <li><strong>جائزة نوبل:</strong> حصلوا عليها عام 1956</li>
+                            <li><strong>أواخر الخمسينيات:</strong> بدأت الحواسيب المعتمدة كلياً على الترانزستور في الظهور تجارياً</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="advantages-box">
+                        <div class="advantages-title">✅ مزايا الترانزستور على الأنابيب المفرغة:</div>
+                        <ol>
+                            <li><strong>أصغر حجماً (Smaller):</strong>
+                                <ul>
+                                    <li>الأنبوب المفرغ: بحجم المصباح الكهربائي (~5-10 سم)</li>
+                                    <li>الترانزستور الأول: بضعة ملليمترات</li>
+                                    <li>التأثير: إمكانية بناء حواسيب أصغر وأكثر كفاءة</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>أرخص (Cheaper):</strong>
+                                <ul>
+                                    <li>تكلفة إنتاج أقل بكثير</li>
+                                    <li>لا يحتاج إلى فراغ (Vacuum)</li>
+                                    <li>عمر أطول = تكلفة صيانة أقل</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>حرارة أقل (Dissipates Less Heat):</strong>
+                                <ul>
+                                    <li>الأنبوب المفرغ: يسخن لدرجات عالية جداً</li>
+                                    <li>الترانزستور: حرارة أقل بكثير</li>
+                                    <li>التأثير: احتياج أقل للتبريد، موثوقية أعلى</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>جهاز حالة صلبة (Solid-State Device):</strong>
+                                <ul>
+                                    <li>مصنوع من السيليكون - مادة شبه موصلة</li>
+                                    <li>لا أجزاء متحركة = موثوقية أعلى</li>
+                                    <li>لا يحتاج وقت تسخين (warm-up time)</li>
+                                    <li>عمر افتراضي أطول بكثير</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="diagram-box">
+                        <div class="diagram-title">📊 مقارنة سريعة:</div>
+                        <div class="code-block">
+┌─────────────────────────────────────────────────────────┐
+│           Vacuum Tube  vs  Transistor                   │
+├─────────────────────────────────────────────────────────┤
+│  Size:        Bulb-sized     →    Millimeters          │
+│  Cost:        Expensive      →    Cheap                │
+│  Heat:        Very Hot       →    Cool                 │
+│  Power:       Watts          →    Milliwatts           │
+│  Life:        ~1000 hours    →    Years/Decades        │
+│  Speed:       Microseconds   →    Nanoseconds          │
+│  Reliability: Low            →    High                 │
+└─────────────────────────────────────────────────────────┘
+                        </div>
+                    </div>
+                    
+                    <div class="key-points">
+                        <div class="key-points-title">🎯 التحسينات التي قدمها الجيل الثاني:</div>
+                        
+                        <h4>1️⃣ وحدات حسابية ومنطقية أكثر تعقيداً:</h4>
+                        <ul>
+                            <li><strong>ALU أقوى:</strong> قادرة على عمليات أكثر تعقيداً</li>
+                            <li><strong>وحدات تحكم محسّنة:</strong> تنسيق أفضل للعمليات</li>
+                            <li><strong>سرعة أعلى:</strong> من 40,000 إلى 200,000 عملية/ثانية</li>
+                        </ul>
+                        
+                        <h4>2️⃣ لغات البرمجة عالية المستوى:</h4>
+                        <ul>
+                            <li><strong>الجيل الأول:</strong> كان يستخدم لغة الآلة ولغة التجميع فقط</li>
+                            <li><strong>الجيل الثاني قدّم:</strong>
+                                <ul>
+                                    <li><strong>FORTRAN</strong> (1957) - للحسابات العلمية</li>
+                                    <li><strong>COBOL</strong> (1959) - للأعمال التجارية</li>
+                                    <li><strong>ALGOL</strong> (1958) - لغة خوارزمية</li>
+                                </ul>
+                            </li>
+                            <li><strong>التأثير:</strong> البرمجة أصبحت أسهل وأسرع بكثير!</li>
+                        </ul>
+                        
+                        <h4>3️⃣ برمجيات النظام (System Software):</h4>
+                        <ul>
+                            <li><strong>تحميل البرامج (Load Programs):</strong>
+                                <ul>
+                                    <li>محمّلات تلقائية (Loaders)</li>
+                                    <li>لا حاجة للتحميل اليدوي بعد الآن</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>نقل البيانات للأجهزة الطرفية:</strong>
+                                <ul>
+                                    <li>برامج تشغيل (Drivers) للطابعات</li>
+                                    <li>إدارة أشرطة مغناطيسية</li>
+                                    <li>قارئات البطاقات المثقبة</li>
+                                </ul>
+                            </li>
+                            
+                            <li><strong>مكتبات الحسابات الشائعة:</strong>
+                                <ul>
+                                    <li>دوال رياضية جاهزة</li>
+                                    <li>مثل iostream في C++ الحديثة</li>
+                                    <li>مثل Scanner في Java</li>
+                                    <li><strong>التأثير:</strong> لا حاجة لإعادة كتابة نفس الكود</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- IBM 7094 -->
+                <div class="generation-box">
+                    <div class="generation-title">
+                        <div class="generation-icon">🏢</div>
+                        IBM 7094 Configuration
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>🖥️ نظرة عامة:</h4>
+                        <p>IBM 7094 كان من أقوى الحواسيب التجارية في أوائل الستينيات، واستُخدم في:</p>
+                        <ul>
+                            <li>البحث العلمي والهندسي</li>
+                            <li>برنامج الفضاء الأمريكي (NASA)</li>
+                            <li>الجامعات والمعاهد البحثية</li>
+                            <li>المؤسسات الحكومية</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="diagram-box">
+                        <div class="diagram-title">🔧 بنية IBM 7094:</div>
+                        <div class="code-block" style="font-size: 0.9em;">
+┌────────────────────────────────────────────────────────────┐
+│                    IBM 7094 SYSTEM                         │
+└────────────────────────────────────────────────────────────┘
+
+        ┌─────────┐          ┌──────────┐
+        │   CPU   │◄────────►│  Memory  │
+        └────┬────┘          └──────────┘
+             │
+    ┌────────┼────────┬──────────┬──────────┐
+    │        │        │          │          │
+    ▼        ▼        ▼          ▼          ▼
+[Channel] [Channel] [Channel] [Channel] [Multiplexor]
+    │        │        │          │          │
+    ├────────┼────────┼──────────┼──────────┤
+    │        │        │          │          │
+    ▼        ▼        ▼          ▼          ▼
+┌─────┐  ┌────┐  ┌────┐   ┌────────┐  ┌──────────┐
+│Mag  │  │Card│  │Card│   │  Line  │  │Teleproc. │
+│Tape │  │Read│  │Punc│   │Printer │  │Equipment │
+└─────┘  └────┘  └────┘   └────────┘  └──────────┘
+   ▼        ▼       ▼          ▼           ▼
+┌─────┐  ┌────┐  ┌────┐   ┌──────┐   ┌──────────┐
+│Drum │  │Disk│  │Disk│   │Hyper │   │   ...    │
+└─────┘  └────┘  └────┘   │Tapes │   └──────────┘
+                           └──────┘
+                        </div>
+                    </div>
+                    
+                    <div class="advantages-box">
+                        <div class="advantages-title">🔍 المكونات الرئيسية والشرح:</div>
+                        
+                        <h4>1️⃣ CPU (وحدة المعالجة المركزية):</h4>
+                        <ul>
+                            <li>قلب النظام - ينفذ التعليمات</li>
+                            <li>مبني بالكامل من الترانزستورات</li>
+                            <li>سرعة أعلى بكثير من الجيل الأول</li>
+                        </ul>
+                        
+                        <h4>2️⃣ Memory (الذاكرة):</h4>
+                        <ul>
+                            <li><strong>Core Memory:</strong> ذاكرة المغناطيسية الحلقية</li>
+                            <li>حجم نموذجي: 32K-256K كلمة (36-bit)</li>
+                            <li>غير متطايرة (تحتفظ بالبيانات عند انقطاع الطاقة)</li>
+                        </ul>
+                        
+                        <h4>3️⃣ Data Channels (قنوات البيانات):</h4>
+                        <div class="important-note">
+                            <div class="
